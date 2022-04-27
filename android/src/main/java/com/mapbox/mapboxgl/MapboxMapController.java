@@ -721,6 +721,16 @@ final class MapboxMapController
           animateCamera(cameraUpdate, duration, result);
           break;
         }
+      // todo changes
+      case "camera#paddingTo": {
+          mapboxMap.setPadding(call.argument("left"), call.argument("top"),
+                  call.argument("right"), call.argument("bottom"));
+//                CameraUpdateFactory.paddingTo(call.argument("left"), call.argument("top"),
+//                        call.argument("right"), call.argument("bottom"));
+
+          result.success(null);
+          break;
+      }
       case "map#queryRenderedFeatures":
         {
           Map<String, Object> reply = new HashMap<>();

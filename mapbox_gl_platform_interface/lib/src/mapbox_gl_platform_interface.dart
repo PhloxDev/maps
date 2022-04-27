@@ -171,4 +171,9 @@ abstract class MapboxGlPlatform {
     onMapIdlePlatform.clear();
     onUserLocationUpdatedPlatform.clear();
   }
+
+  // todo changes
+  Future<bool> setPaddingTo(int left, int top, int right, int bottom) async {
+    throw UnimplementedError('setPaddingTo() has not been implemented.');
+  }
 }

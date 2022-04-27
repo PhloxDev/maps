@@ -263,6 +263,16 @@ class MapboxMapController extends ChangeNotifier {
     return _mapboxGlPlatform.animateCamera(cameraUpdate);
   }
 
+  // todo changes
+  ///
+  /// The returned [Future] completes after the change has been made on the
+  /// platform side.
+  /// It returns true if the camera was successfully padding and false if the padding was canceled.
+  /// Note: this currently always returns immediately with a value of null on iOS
+  Future<bool> setPaddingTo(int left, int top, int right, int bottom) async {
+    return _mapboxGlPlatform.setPaddingTo(left, top, right, bottom);
+  }
+
   /// Instantaneously re-position the camera.
   /// Note: moveCamera() quickly moves the camera, which can be visually jarring for a user. Strongly consider using the animateCamera() methods instead because it's less abrupt.
   ///

@@ -658,4 +658,15 @@ class MethodChannelMapboxGl extends MapboxGlPlatform {
       'geojsonFeature': jsonEncode(geojsonFeature)
     });
   }
+
+  // todo changes
+   @override
+  Future<bool> setPaddingTo(int left, int top, int right, int bottom) async {
+    return await _channel.invokeMethod('camera#paddingTo', <String, dynamic>{
+      'left': left,
+      'top': top,
+      'right': right,
+      'bottom': bottom
+    });
+  }
 }
