@@ -1096,6 +1096,16 @@ class MapboxMapController extends ChangeNotifier {
     return _mapboxGlPlatform.addSource(sourceid, properties);
   }
 
+  // todo changes
+  Future<void> setSymbolIconPitchAlignment(String iconPitchAlignment) async {
+    await symbolManager?.setIconPitchAlignment(iconPitchAlignment);
+  }
+
+  Future<void> setSymbolIconRotationAlignment(
+      String iconRotationAlignment) async {
+    await symbolManager?.setIconRotationAlignment(iconRotationAlignment);
+  }
+
   /// Add a layer to the map with the given properties
   ///
   /// The returned [Future] completes after the change has been made on the

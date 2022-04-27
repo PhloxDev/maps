@@ -253,10 +253,14 @@ class SymbolManager extends AnnotationManager<Symbol> {
     bool iconIgnorePlacement = false,
     bool textIgnorePlacement = false,
     bool enableInteraction = true,
+    String iconPitchAlignment = 'map',
+    String iconRotationAlignment = 'map',
   })  : _iconAllowOverlap = iconAllowOverlap,
         _textAllowOverlap = textAllowOverlap,
         _iconIgnorePlacement = iconIgnorePlacement,
         _textIgnorePlacement = textIgnorePlacement,
+        _iconPitchAlignment = iconPitchAlignment,
+        _iconRotationAlignment = iconRotationAlignment,
         super(
           controller,
           enableInteraction: enableInteraction,
@@ -267,6 +271,9 @@ class SymbolManager extends AnnotationManager<Symbol> {
   bool _textAllowOverlap;
   bool _iconIgnorePlacement;
   bool _textIgnorePlacement;
+
+  String _iconPitchAlignment;
+  String _iconRotationAlignment;
 
   /// For more information on what this does, see https://docs.mapbox.com/help/troubleshooting/optimize-map-label-placement/#label-collision
   Future<void> setIconAllowOverlap(bool value) async {
@@ -292,6 +299,17 @@ class SymbolManager extends AnnotationManager<Symbol> {
     await _rebuildLayers();
   }
 
+  // todo changes
+  Future<void> setIconPitchAlignment(String value) async {
+    _iconPitchAlignment = value;
+    await _rebuildLayers();
+  }
+
+  Future<void> setIconRotationAlignment(String value) async {
+    _iconRotationAlignment = value;
+    await _rebuildLayers();
+  }
+
   @override
   List<LayerProperties> get allLayerProperties => [
         SymbolLayerProperties(
@@ -305,6 +323,8 @@ class SymbolManager extends AnnotationManager<Symbol> {
           iconHaloColor: [Expressions.get, 'iconHaloColor'],
           iconHaloWidth: [Expressions.get, 'iconHaloWidth'],
           iconHaloBlur: [Expressions.get, 'iconHaloBlur'],
+          iconPitchAlignment: _iconPitchAlignment,
+          iconRotationAlignment: _iconRotationAlignment,
           // note that web does not support setting this in a fully data driven
           // way this is a upstream issue
           textFont: kIsWeb
